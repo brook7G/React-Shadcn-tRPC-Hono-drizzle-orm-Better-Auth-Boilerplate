@@ -7,7 +7,7 @@ import { os } from '@orpc/server'
 const adminHello = os.handler<{ user?: { name?: string } }>(async (opt) => {
   // Extract user from opt.context, assuming context is attached there
   const ctx = opt.context as { user?: { name?: string } };
-  await isAdmin(opt);
+  await isAdmin(opt.input, opt.context);
   return { user: { name: ctx.user?.name || '' } }
 })
 
